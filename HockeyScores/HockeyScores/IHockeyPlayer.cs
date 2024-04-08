@@ -12,6 +12,7 @@ namespace HockeyScores
         public void ShowScoring(ScoringStatistics PlayerScoringStatistic);
         public ScoringStatistics GetScoring();
 
-        event HattrickDelegate HattrickScored;
+        public event HattrickDelegate HattrickScored;
+        
     }
 }

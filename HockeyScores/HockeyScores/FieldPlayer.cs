@@ -5,6 +5,8 @@ namespace HockeyScores
     public class FieldPlayer : HockeyPlayerBase
     {
         public override event HattrickDelegate HattrickScored;
+        public override event DataSavedDelegate DataSaved;
+
         public FieldPlayer(string name, string surname, string licence)
             : base(name, surname, licence)
         {
@@ -12,7 +14,8 @@ namespace HockeyScores
         }
         public override void DisplayDataInputMessage()
         {
-            Console.WriteLine("Enter new scores: Goals Scored; Assists Gained; Time Played");
+            Console.WriteLine("Enter new scores: Goals Scored, Assists Gained, Time Played");
+            Console.WriteLine("Example: 2,4,1200   and confirm with <Enter>");
         }
         public override void AddGamePoints(int[] GamePoints)            //Object's specific data validation included
         {
@@ -28,7 +31,7 @@ namespace HockeyScores
                 }
                 else if ((GamePoints[2] < 0) ^ (GamePoints[2] > 4800))      //GamePlay[s]
                 {
-                    throw new Exception("Time played can't be negative or larger than 3600[s]!");
+                    throw new Exception("Time played can't be negative or larger than 4800[s]!");
                 }
                 else
                 {
@@ -36,6 +39,18 @@ namespace HockeyScores
                     using (var writer = File.AppendText(FileName))
                     {
                         writer.WriteLine($"{GamePoints[0]};{GamePoints[1]};{GamePoints[2]}");
+                        if (DataSaved != null)
+                        {
+                            DataSaved(this, new EventArgs());
+                        }
+                    }
+
+                    if (GamePoints[0] > 2)
+                    {
+                        if (HattrickScored != null)
+                        {
+                            HattrickScored(this, new EventArgs());
+                        }
                     }
                 }
             }
@@ -76,13 +91,13 @@ namespace HockeyScores
         }
         public override void ShowScoring(ScoringStatistics PlayerScoringStatistics)
         {
+            var GamePlayTime=TimeSpan.FromSeconds(PlayerScoringStatistics.TotalGamePlayTime).ToString("hh':'mm':'ss");
+            Console.WriteLine();
+            Console.ForegroundColor = ConsoleColor.DarkGreen;
+            Console.WriteLine($"{this.Name} {this.Surname} -> {this.Position} Player in total {PlayerScoringStatistics.TotalGamesPlayed} Games with actual statistics:");
+            Console.WriteLine($"|Goals:{PlayerScoringStatistics.TotalGoals}| |Assists:{PlayerScoringStatistics.TotalAssists}| |GamePlay:{GamePlayTime}| |Eff:{PlayerScoringStatistics.Efficiency:N2}%| |Score:{PlayerScoringStatistics.CanadianScoring}|");
             Console.ResetColor();
             Console.WriteLine();
-            Console.BackgroundColor = ConsoleColor.DarkGreen;
-            Console.ForegroundColor = ConsoleColor.Black;
-            Console.WriteLine($"{this.Name} {this.Surname} -> {this.Position} in total {PlayerScoringStatistics.TotalGamesPlayed} Games with actual statistics:");
-            Console.WriteLine($"Goals:{PlayerScoringStatistics.TotalGoals}| Assists:{PlayerScoringStatistics.TotalAssists}| GamePlay:{PlayerScoringStatistics.TotalGamePlayTime}s| Efficiency:{PlayerScoringStatistics.Efficiency:N2}| Canadian scoring:{PlayerScoringStatistics.CanadianScoring}|");
-            Console.ResetColor();
 
         }
     }
