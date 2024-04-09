@@ -11,8 +11,6 @@ namespace HockeyScores
         public void AddGamePoints(string GamePointString);
         public void ShowScoring(ScoringStatistics PlayerScoringStatistic);
         public ScoringStatistics GetScoring();
-
         public event HattrickDelegate HattrickScored;
-        
     }
 }

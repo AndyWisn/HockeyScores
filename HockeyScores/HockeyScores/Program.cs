@@ -20,24 +20,24 @@ while (true)
     if (input == "Q")
     {
         break;
-    }  
+    }
     var PlayerFound = false;
     foreach (var Player in Players)
     {
         if (input == Player.Licence)
         {
             PlayerFound = true;
-            
+
             Player.ShowScoring(Player.GetScoring());
             Player.DisplayDataInputMessage();
-                try
-                {
-                    Player.AddGamePoints(Console.ReadLine());
-                }
-                catch (Exception e)
-                {
-                    Console.WriteLine($"Exception: {e.Message}\n");
-                }
+            try
+            {
+                Player.AddGamePoints(Console.ReadLine());
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine($"Exception: {e.Message}\n");
+            }
             Player.ShowScoring(Player.GetScoring());
         }
     }

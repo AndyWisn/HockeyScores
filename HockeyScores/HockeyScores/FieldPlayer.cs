@@ -91,14 +91,13 @@ namespace HockeyScores
         }
         public override void ShowScoring(ScoringStatistics PlayerScoringStatistics)
         {
-            var GamePlayTime=TimeSpan.FromSeconds(PlayerScoringStatistics.TotalGamePlayTime).ToString("hh':'mm':'ss");
+            var GamePlayTime = TimeSpan.FromSeconds(PlayerScoringStatistics.TotalGamePlayTime).ToString("hh':'mm':'ss");
             Console.WriteLine();
             Console.ForegroundColor = ConsoleColor.DarkGreen;
             Console.WriteLine($"{this.Name} {this.Surname} -> {this.Position} Player in total {PlayerScoringStatistics.TotalGamesPlayed} Games with actual statistics:");
             Console.WriteLine($"|Goals:{PlayerScoringStatistics.TotalGoals}| |Assists:{PlayerScoringStatistics.TotalAssists}| |GamePlay:{GamePlayTime}| |Eff:{PlayerScoringStatistics.Efficiency:N2}%| |Score:{PlayerScoringStatistics.CanadianScoring}|");
             Console.ResetColor();
             Console.WriteLine();
-
         }
     }
 }

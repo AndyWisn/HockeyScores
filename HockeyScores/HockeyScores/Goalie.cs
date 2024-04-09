@@ -65,7 +65,7 @@
                     }
                     if (GamePoints[0] > 2)
                     {
-                        if(HattrickScored != null)
+                        if (HattrickScored != null)
                         {
                             HattrickScored(this, new EventArgs());
                         }
@@ -79,12 +79,11 @@
                     }
                 }
             }
-            else 
-            { 
+            else
+            {
                 throw new Exception("Data error. There should be 5xInt value entered.");
             }
         }
-
         public override ScoringStatistics GetScoring()
         {
             var Scoring = new ScoringStatistics();
@@ -125,5 +124,5 @@
             Console.ResetColor();
             Console.WriteLine();
         }
-    }  
+    }
 }

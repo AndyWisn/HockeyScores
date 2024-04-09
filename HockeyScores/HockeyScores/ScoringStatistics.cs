@@ -33,7 +33,7 @@
         public float BlockingEfficiency                                     //only for Goalies
         {
             get
-            { 
+            {
                 if (this.TotalOnGoalShots > 0)
                 {
                     return (float)(this.TotalOnGoalShots - this.TotalGoalsPassed) / this.TotalOnGoalShots;
