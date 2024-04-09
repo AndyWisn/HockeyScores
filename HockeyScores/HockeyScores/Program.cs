@@ -5,6 +5,8 @@ Console.WriteLine();
 List<HockeyPlayerBase> Players = new List<HockeyPlayerBase>();
 Players.Add(new Goalie("Leon", "Wiśniewski", "A3456"));
 Players.Add(new FieldPlayer("Roch", "Wiśniewski", "B3434"));
+Players.Add(new FieldPlayer("Andrzej", "Wiśniewski", "C1234"));
+
 while (true)
 {
     Console.WriteLine("List of registered players:\n");
@@ -41,7 +43,9 @@ while (true)
     }
     if (!PlayerFound)
     {
-        Console.WriteLine($"No player licence #{input} found!");
+        Console.ForegroundColor = ConsoleColor.Red;
+        Console.WriteLine($"No Player with licence #{input} found!");
+        Console.ResetColor();
         Console.WriteLine();
     }
 }

@@ -51,7 +51,7 @@
             this.TotalGamePlayTime = 0;
             this.TotalOnGoalShots = 0;
             this.TotalGoalsPassed = 0;
-            this.TotalGamesPlayed++;
+            this.TotalGamesPlayed = 0;
         }
         public void AddGamePoints(int[] GamePoints)
         {
