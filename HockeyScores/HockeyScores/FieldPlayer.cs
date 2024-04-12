@@ -1,6 +1,4 @@
-﻿using System.Drawing;
-
-namespace HockeyScores
+﻿namespace HockeyScores
 {
     public class FieldPlayer : HockeyPlayerBase
     {
@@ -17,19 +15,19 @@ namespace HockeyScores
             Console.WriteLine("Enter new scores: Goals Scored, Assists Gained, Time Played");
             Console.WriteLine("Example: 2,4,1200   and confirm with <Enter>");
         }
-        public override void AddGamePoints(int[] GamePoints)            //Object's specific data validation included
+        public override void AddGamePoints(int[] gamePoints)            //Object's specific data validation included
         {
-            if (GamePoints.Length == 3)
+            if (gamePoints.Length == 3)
             {
-                if (GamePoints[0] < 0)                                      //Goals
+                if (gamePoints[0] < 0)                                      //Goals
                 {
                     throw new Exception("Goals Gained can't be negative!");
                 }
-                else if (GamePoints[1] < 0)                                 //Assists
+                else if (gamePoints[1] < 0)                                 //Assists
                 {
                     throw new Exception("Assists Gained can't be negative!");
                 }
-                else if ((GamePoints[2] < 0) ^ (GamePoints[2] > 4800))      //GamePlay[s]
+                else if ((gamePoints[2] < 0) ^ (gamePoints[2] > 4800))      //GamePlay[s]
                 {
                     throw new Exception("Time played can't be negative or larger than 4800[s]!");
                 }
@@ -38,14 +36,14 @@ namespace HockeyScores
                     var FileName = this.Licence + ".TXT";
                     using (var writer = File.AppendText(FileName))
                     {
-                        writer.WriteLine($"{GamePoints[0]};{GamePoints[1]};{GamePoints[2]}");
+                        writer.WriteLine($"{gamePoints[0]};{gamePoints[1]};{gamePoints[2]}");
                         if (DataSaved != null)
                         {
                             DataSaved(this, new EventArgs());
                         }
                     }
 
-                    if (GamePoints[0] > 2)
+                    if (gamePoints[0] > 2)
                     {
                         if (HattrickScored != null)
                         {

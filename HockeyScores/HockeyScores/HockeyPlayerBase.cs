@@ -30,18 +30,18 @@
         public virtual string? Surname { get; set; }
         public virtual string? Licence { get; set; }
         public virtual string? Position { get; set; }
-        public abstract void AddGamePoints(int[] GamePoints);
-        public void AddGamePoints(string GamePointsInString)
+        public abstract void AddGamePoints(int[] gamePoints);
+        public void AddGamePoints(string gamePointsInString)
         {
-            if ((GamePointsInString.EndsWith(',')) ^ (GamePointsInString.EndsWith('.')))
+            if ((gamePointsInString.EndsWith(',')) ^ (gamePointsInString.EndsWith('.')))
             {
-                GamePointsInString = GamePointsInString.Remove(GamePointsInString.Length - 1);
+                gamePointsInString = gamePointsInString.Remove(gamePointsInString.Length - 1);
             }
-            int[] GamePoints = GamePointsInString.Split(',').Select(int.Parse).ToArray();
-            this.AddGamePoints(GamePoints);
+            int[] gamePoints = gamePointsInString.Split(',').Select(int.Parse).ToArray();
+            this.AddGamePoints(gamePoints);
         }
         public abstract ScoringStatistics GetScoring();
-        public abstract void ShowScoring(ScoringStatistics PlayerScoringStatistics);
+        public abstract void ShowScoring(ScoringStatistics playerScoringStatistics);
         public abstract void DisplayDataInputMessage();
     }
 }

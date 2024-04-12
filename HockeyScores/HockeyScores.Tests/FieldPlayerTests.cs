@@ -1,64 +1,60 @@
 namespace HockeyScores.Tests
 {
-    public class FieldPlayerTests
+    public class fieldPlayerTests
     {
         [Test]
-        public void WhenFieldPlayerGetScoresAsIntegersShouldReturnCorrectStatistics()
+        public void whenFieldPlayerGetsScoresAsIntegersShouldReturnCorrectStatistics()
         {
             //arrange
-            int[][] PointArray = new int[3][];
-            var TestFieldPlayer = new FieldPlayer("Andrzej", "Wiœniewski", "C1234");
-            string fileName = ($"{TestFieldPlayer.Licence}" + ".TXT").ToUpper();
+            int[][] pointArray = new int[3][];
+            var testFieldPlayer = new FieldPlayer("Andrzej", "Wiœniewski", "C1234");
+            string fileName = ($"{testFieldPlayer.Licence}" + ".TXT").ToUpper();
             if (File.Exists(fileName))
             {
                 File.Delete(fileName);
             }
-            PointArray[0] = [1, 1, 10];
-            PointArray[1] = [2, 2, 20];
-            PointArray[2] = [3, 3, 30];
-            TestFieldPlayer.AddGamePoints(PointArray[0]);
-            TestFieldPlayer.AddGamePoints(PointArray[1]);
-            TestFieldPlayer.AddGamePoints(PointArray[2]);
+            pointArray[0] = [1, 1, 10];
+            pointArray[1] = [2, 2, 20];
+            pointArray[2] = [3, 3, 30];
+            testFieldPlayer.AddGamePoints(pointArray[0]);
+            testFieldPlayer.AddGamePoints(pointArray[1]);
+            testFieldPlayer.AddGamePoints(pointArray[2]);
 
             //act
-
-            ScoringStatistics PlayerStats = TestFieldPlayer.GetScoring();
+            ScoringStatistics playerStats = testFieldPlayer.GetScoring();
 
             //assert
-
-            Assert.That(PlayerStats.TotalGoals, Is.EqualTo(6));
-            Assert.That(PlayerStats.TotalAssists, Is.EqualTo(6));
-            Assert.That(PlayerStats.TotalGamePlayTime, Is.EqualTo(60));
-            Assert.That(PlayerStats.TotalGamesPlayed, Is.EqualTo(3));
-            Assert.That(PlayerStats.CanadianScoring, Is.EqualTo(12));
-            Assert.That(Math.Round(PlayerStats.Efficiency, 2), Is.EqualTo(4.00));
+            Assert.That(playerStats.TotalGoals, Is.EqualTo(6));
+            Assert.That(playerStats.TotalAssists, Is.EqualTo(6));
+            Assert.That(playerStats.TotalGamePlayTime, Is.EqualTo(60));
+            Assert.That(playerStats.TotalGamesPlayed, Is.EqualTo(3));
+            Assert.That(playerStats.CanadianScoring, Is.EqualTo(12));
+            Assert.That(Math.Round(playerStats.Efficiency, 2), Is.EqualTo(4.00));
         }
 
         [Test]
-        public void WhenFieldPlayerGetScoresAsStringShouldReturnCorrectStatistics()
+        public void whenFieldPlayerGetsScoresAsStringShouldReturnCorrectStatistics()
         {    //arrange
-            var TestFieldPlayer = new FieldPlayer("Andrzej", "Wiœniewski", "C1234");
-            string fileName = ($"{TestFieldPlayer.Licence}" + ".TXT").ToUpper();
+            var testFieldPlayer = new FieldPlayer("Andrzej", "Wiœniewski", "C1234");
+            string fileName = ($"{testFieldPlayer.Licence}" + ".TXT").ToUpper();
             if (File.Exists(fileName))
             {
                 File.Delete(fileName);
             }
-            TestFieldPlayer.AddGamePoints("1, 1, 10");
-            TestFieldPlayer.AddGamePoints("2, 2, 20");
-            TestFieldPlayer.AddGamePoints("3, 3, 30");
+            testFieldPlayer.AddGamePoints("1, 1, 10");
+            testFieldPlayer.AddGamePoints("2, 2, 20");
+            testFieldPlayer.AddGamePoints("3, 3, 30");
 
             //act
-
-            ScoringStatistics PlayerStats = TestFieldPlayer.GetScoring();
+            ScoringStatistics playerStats = testFieldPlayer.GetScoring();
 
             //assert
-
-            Assert.That(PlayerStats.TotalGoals, Is.EqualTo(6));
-            Assert.That(PlayerStats.TotalAssists, Is.EqualTo(6));
-            Assert.That(PlayerStats.TotalGamePlayTime, Is.EqualTo(60));
-            Assert.That(PlayerStats.TotalGamesPlayed, Is.EqualTo(3));
-            Assert.That(PlayerStats.CanadianScoring, Is.EqualTo(12));
-            Assert.That(Math.Round(PlayerStats.Efficiency, 2), Is.EqualTo(4.00));
+            Assert.That(playerStats.TotalGoals, Is.EqualTo(6));
+            Assert.That(playerStats.TotalAssists, Is.EqualTo(6));
+            Assert.That(playerStats.TotalGamePlayTime, Is.EqualTo(60));
+            Assert.That(playerStats.TotalGamesPlayed, Is.EqualTo(3));
+            Assert.That(playerStats.CanadianScoring, Is.EqualTo(12));
+            Assert.That(Math.Round(playerStats.Efficiency, 2), Is.EqualTo(4.00));
         }
     }
 }

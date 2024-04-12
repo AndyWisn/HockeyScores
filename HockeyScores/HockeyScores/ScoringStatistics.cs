@@ -53,22 +53,22 @@
             this.TotalGoalsPassed = 0;
             this.TotalGamesPlayed = 0;
         }
-        public void AddGamePoints(int[] GamePoints)
+        public void AddGamePoints(int[] gamePoints)
         {
-            switch (GamePoints.Length)
+            switch (gamePoints.Length)
             {
                 case 3:
-                    this.TotalGoals += GamePoints[0];
-                    this.TotalAssists += GamePoints[1];
-                    this.TotalGamePlayTime += GamePoints[2];
+                    this.TotalGoals += gamePoints[0];
+                    this.TotalAssists += gamePoints[1];
+                    this.TotalGamePlayTime += gamePoints[2];
                     this.TotalGamesPlayed++;
                     break;
                 case 5:
-                    this.TotalGoals += GamePoints[0];
-                    this.TotalAssists += GamePoints[1];
-                    this.TotalGamePlayTime += GamePoints[2];
-                    this.TotalOnGoalShots += GamePoints[3];
-                    this.TotalGoalsPassed += GamePoints[4];
+                    this.TotalGoals += gamePoints[0];
+                    this.TotalAssists += gamePoints[1];
+                    this.TotalGamePlayTime += gamePoints[2];
+                    this.TotalOnGoalShots += gamePoints[3];
+                    this.TotalGoalsPassed += gamePoints[4];
                     this.TotalGamesPlayed++;
                     break;
                 default:
